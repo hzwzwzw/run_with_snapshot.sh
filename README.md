@@ -12,6 +12,17 @@
 
 **示例：**
 ```bash
+# 自动模式：自动识别命令中存在的文件参数
+$ snap python -m eval --config config.yaml --gpu 0
+Snapshot: config.yaml -> config_20240315_142301.yaml
+# 实际执行: python -m eval --config config_20240315_142301.yaml --gpu 0
+
+# 显式模式（-f）：只快照指定的文件
+$ snap -f config.yaml python eval.py --config config.yaml --gpu 0
+Snapshot: config.yaml -> config_20240315_142301.yaml
+# 实际执行: python eval.py --config config_20240315_142301.yaml --gpu 0
+
+# 自定义标签（-c）：用标签替代时间戳
 $ snap -c exp01 -f config.yaml python eval.py --config config.yaml --gpu 0
 Snapshot: config.yaml -> config_exp01.yaml
 # 实际执行: python eval.py --config config_exp01.yaml --gpu 0
